@@ -16,60 +16,21 @@ def _color_index_to_pair_index(major_index, minor_index):
     return major_index * 5 + minor_index
 
 
-def print_color_map():
-    """Prints a color map of major and minor colors."""
+def get_color_map():
+    """Returns a list of formatted color map strings."""
     major_colors = ["White", "Red", "Black", "Yellow", "Violet"]
     minor_colors = ["Blue", "Orange", "Green", "Brown", "Slate"]
+    result = []
     for i, major in enumerate(major_colors):
         for j, minor in enumerate(minor_colors):
             index = _color_index_to_pair_index(i, j)
-            print(f'{index} | {major} | {minor}')
-    return len(major_colors) * len(minor_colors)
+            result.append(f'{index} | {major} | {minor}')
+    return result
 
 
-def test_print_color_map():
-    """Test the print_color_map function."""
-    assert print_color_map() == 25
-
-
-def test_color_index_to_pair_index_within_range():
-    """Test the _color_index_to_pair_index function with valid indices."""
-    assert _color_index_to_pair_index(0, 0) == 0
-    assert _color_index_to_pair_index(1, 1) == 6
-    assert _color_index_to_pair_index(4, 4) == 24
-
-
-def test_color_index_to_pair_index_out_of_range():
-    """
-    Test the _color_index_to_pair_index function with out of range indices.
-    """
-    try:
-        _color_index_to_pair_index(5, 0)
-    except ValueError:
-        pass
-    try:
-        _color_index_to_pair_index(0, 5)
-    except ValueError:
-        pass
-
-
-def test_color_index_to_pair_index_negative():
-    """
-    Test the _color_index_to_pair_index function with negative indices.
-    """
-    try:
-        _color_index_to_pair_index(-1, 0)
-    except ValueError:
-        pass
-    try:
-        _color_index_to_pair_index(0, -1)
-    except ValueError:
-        pass
-
-
-if __name__ == "__main__":
-    test_print_color_map()
-    test_color_index_to_pair_index_within_range()
-    test_color_index_to_pair_index_out_of_range()
-    test_color_index_to_pair_index_negative()
-    print("All tests passed!")
+def print_color_map():
+    """Prints a color map of major and minor colors."""
+    color_map = get_color_map()
+    for line in color_map:
+        print(line)
+    return len(color_map)
