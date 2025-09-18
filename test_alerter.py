@@ -11,8 +11,6 @@ def network_alert_failure_stub(celcius):
 
 def test_alert_failure_count():
     """Test that failures are properly counted."""
-    global alert_failure_count
-    
     # Reset the counter by importing and setting it
     import alerter
     alerter.alert_failure_count = 0
